@@ -6,7 +6,7 @@ import singer.metrics
 
 from datetime import timedelta, datetime
 
-import tap_lever.streams.cache as stream_cache
+from tap_lever.streams import cache as stream_cache
 from tap_lever.config import get_config_start_date
 from tap_lever.state import incorporate, save_state, \
     get_last_record_value_for_table

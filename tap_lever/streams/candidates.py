@@ -1,5 +1,5 @@
 from tap_lever.streams.base import TimeRangeStream
-import tap_lever.streams.cache as stream_cache
+from tap_lever.streams import cache as stream_cache
 
 import singer
 
