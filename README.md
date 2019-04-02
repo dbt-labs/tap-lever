@@ -5,15 +5,14 @@ Author: Drew Banin (drew@fishtownanalytics.com)
 This is a [Singer](http://singer.io) tap that produces JSON-formatted data following the [Singer spec](https://github.com/singer-io/getting-started/blob/master/SPEC.md).
 
 It:
-
 - Generates a catalog of available data in Lever
 - Extracts the following resources:
- - candidates
- - postings
- - referrals
- - requisitions
- - sources
- - stages
+  - candidates
+  - postings
+  - referrals
+  - requisitions
+  - sources
+  - stages
 
 ### Quick Start
 
