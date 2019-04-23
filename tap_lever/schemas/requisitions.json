@@ -5,10 +5,10 @@
             "type": "string"
         },
         "requisitionCode": {
-            "type": "string"
+            "type": ["string", "null"]
         },
         "name": {
-            "type": "string"
+            "type": ["string", "null"]
         },
         "backfill": {
             "type": "boolean"
@@ -17,48 +17,32 @@
             "type": "integer"
         },
         "creator": {
-            "type": "string"
+            "type": ["string", "null"]
         },
         "headcountHired": {
-            "type": "integer"
+            "type": ["integer", "null"]
         },
         "headcountTotal": {
-            "type": "integer"
+            "type": ["integer", "null"]
         },
         "status": {
-            "type": "string"
+            "type": ["string", "null"]
         },
         "hiringManager": {
-            "type": "string"
+            "type": ["string", "null"]
         },
         "owner": {
-            "type": "string"
+            "type": ["string", "null"]
         },
-        "compensationBand": {
-            "type": "object",
-            "properties": {
-                "currency": {
-                    "type": "string"
-                },
-                "interval": {
-                    "type": "string"
-                },
-                "min": {
-                    "type": "integer"
-                },
-                "max": {
-                    "type": "integer"
-                }
-            }
-        },
+        "compensationBand": {},
         "employmentStatus": {
-            "type": "string"
+            "type": ["string", "null"]
         },
         "location": {
-            "type": "string"
+            "type": ["string", "null"]
         },
         "internalNotes": {
-            "type": "string"
+            "type": ["string", "null"]
         },
         "postings": {
             "type": "array",
@@ -67,10 +51,10 @@
             }
         },
         "department": {
-            "type": "string"
+            "type": ["string", "null"]
         },
         "team": {
-            "type": "string"
+            "type": ["string", "null"]
         },
         "offerIds": {
             "type": "array",
@@ -78,10 +62,6 @@
                 "type": "string"
             }
         },
-        "customFields": {
-            "type": "object",
-            "properties": {},
-            "additionalProperties": true
-        }
+        "customFields": {}
     }
 }
