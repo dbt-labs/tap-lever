@@ -23,7 +23,7 @@
             "type": ["integer", "null"]
         },
         "headcountTotal": {
-            "type": ["integer", "null"]
+            "type": ["string", "null"]
         },
         "status": {
             "type": ["string", "null"]
