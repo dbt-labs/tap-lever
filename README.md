@@ -19,7 +19,7 @@ It:
 1. Install
 
 ```bash
-git clone git@github.com:fishtown-analytics/tap-lever.git
+git clone git@github.com:singer-io/tap-lever.git
 cd tap-lever
 pip install .
 ```
@@ -46,4 +46,4 @@ Step 4 generates a a file called `catalog.json` that specifies all the available
 tap-lever -c config.json --catalog catalog.json
 ```
 
-Copyright &copy; 2019 Fishtown Analytics
+Copyright &copy; 2019 Stitch
