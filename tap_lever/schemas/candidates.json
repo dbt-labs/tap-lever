@@ -69,7 +69,7 @@
       "items": {}
     },
     "owner": {
-      "type": "string"
+      "type": ["string", "null"]
     },
     "tags": {
       "items": {},
