@@ -72,8 +72,11 @@
       "type": "string"
     },
     "tags": {
-      "type": "array",
-      "items": {}
+      "items": {},
+      "type": [
+        "array",
+        "null"
+      ]
     },
     "sources": {
       "type": "array",
