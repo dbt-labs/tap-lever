@@ -21,12 +21,18 @@
       "items": {
         "type": "object",
         "properties": {
-            "value": {
-                "type": ["null", "string"]
-            },
-            "type": {
-                "type": ["null", "string"]
-            }
+          "value": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "type": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
         }
       }
     },
@@ -43,68 +49,101 @@
       "type": "string"
     },
     "lastInteractionAt": {
-      "type": ["string", "null"]
+      "type": [
+        "string",
+        "null"
+      ]
     },
     "lastAdvancedAt": {
-      "type": ["string", "null"]
+      "type": [
+        "string",
+        "null"
+      ]
     },
     "snoozedUntil": {
-      "type": ["string", "null"]
+      "type": [
+        "string",
+        "null"
+      ]
     },
     "archived": {
-      "type": ["boolean", "null"]
+      "type": [
+        "boolean",
+        "null"
+      ]
     },
     "archivedAt": {
-      "type": ["string", "null"]
+      "type": [
+        "string",
+        "null"
+      ]
     },
     "archiveReason": {
-      "type": ["string", "object", "null"],
-      "properties": {}
+      "type": [
+        "string",
+        "object",
+        "null"
+      ],
+      "properties": null
     },
     "stage": {
-      "type": ["string", "null"]
+      "type": [
+        "string",
+        "null"
+      ]
     },
     "stageChanges": {
       "type": "array",
-      "items": {}
+      "items": null
     },
     "owner": {
       "type": "string"
     },
     "tags": {
-      "type": "array",
-      "items": {}
       "type": [
         "array",
         "null"
       ],
+      "items": null
     },
     "sources": {
       "type": "array",
-      "items": {}
+      "items": null
     },
     "origin": {
       "type": "string"
     },
     "applications": {
       "type": "array",
-      "items": {}
+      "items": null
     },
     "resume": {
-      "type": ["null", "object"],
-      "properties": {}
+      "type": [
+        "null",
+        "object"
+      ],
+      "properties": null
     },
     "followers": {
-      "type": ["null", "array"],
-      "items": {}
+      "type": [
+        "null",
+        "array"
+      ],
+      "items": null
     },
-    "urls": {},
+    "urls": null,
     "dataProtection": {
-      "type": ["null", "object"],
-      "properties": {}
+      "type": [
+        "null",
+        "object"
+      ],
+      "properties": null
     },
     "isAnonymized": {
-      "type": ["null", "boolean"]
+      "type": [
+        "null",
+        "boolean"
+      ]
     }
   }
 }
