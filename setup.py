@@ -3,7 +3,7 @@
 from setuptools import setup, find_packages
 
 setup(name='tap-lever',
-      version='0.0.2',
+      version='0.0.3',
       description='Singer.io tap for extracting data from the Lever API',
       author='Fishtown Analytics',
       url='http://fishtownanalytics.com',
