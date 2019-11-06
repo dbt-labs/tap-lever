@@ -74,6 +74,10 @@
     "tags": {
       "type": "array",
       "items": {}
+      "type": [
+        "array",
+        "null"
+      ],
     },
     "sources": {
       "type": "array",
