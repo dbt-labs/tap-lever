@@ -10,6 +10,12 @@
     "headline": {
       "type": "string"
     },
+    "contact": {
+      "type": ["null", "string", "array"],
+      "items": {
+        "type": "string"
+      }
+    },
     "emails": {
       "type": "array",
       "items": {
