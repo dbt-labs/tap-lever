@@ -90,10 +90,6 @@
         "type": ["string", "null"]
       }
     },
-    "resume": {
-      "type": ["null", "object"],
-      "properties": {}
-    },
     "createdAt": {
       "type": ["integer", "null"]
     },

@@ -5,58 +5,52 @@ from tap_lever.streams.base import BaseStream
 LOGGER = singer.get_logger()  # noqa
 
 
-class CandidateReferralsStream(BaseStream):
+class CandidateOffersStream(BaseStream):
     API_METHOD = "GET"
-    TABLE = "candidate_referrals"
+    TABLE = "candidate_offers"
 
     @property
     def path(self):
-        return "/candidates/{candidate_id}/referrals"
+        return "/candidates/{candidate_id}/offers"
 
     def get_url(self, candidate):
         _path = self.path.format(candidate_id=candidate)
         return "https://api.lever.co/v1{}".format(_path)
 
     def sync_data(self):
-        table = self.TABLE
-
         candidates = stream_cache.get("candidates")
         LOGGER.info("Found {} candidates in cache".format(len(candidates)))
 
         params = self.get_params(_next=None)
         for i, candidate in enumerate(candidates):
             LOGGER.info(
-                "Fetching referrals for candidate {} of {}".format(
-                    i + 1, len(candidates)
-                )
+                "Fetching offers for candidate {} of {}".format(i + 1, len(candidates))
             )
             candidate_id = candidate["id"]
             url = self.get_url(candidate_id)
             resources = self.sync_paginated(url, params)
 
 
-class OpportunityReferralsStream(BaseStream):
+class OpportunityOffersStream(BaseStream):
     API_METHOD = "GET"
-    TABLE = "opportunity_referrals"
+    TABLE = "opportunity_offers"
 
     @property
     def path(self):
-        return "/opportunities/{opportunity_id}/referrals"
+        return "/opportunities/{opportunity_id}/offers"
 
     def get_url(self, opportunity):
         _path = self.path.format(opportunity_id=opportunity)
         return "https://api.lever.co/v1{}".format(_path)
 
     def sync_data(self):
-        table = self.TABLE
-
         opportunities = stream_cache.get("opportunities")
         LOGGER.info("Found {} opportunities in cache".format(len(opportunities)))
 
         params = self.get_params(_next=None)
         for i, opportunity in enumerate(opportunities):
             LOGGER.info(
-                "Fetching referrals for opportunity {} of {}".format(
+                "Fetching offers for opportunity {} of {}".format(
                     i + 1, len(opportunities)
                 )
             )

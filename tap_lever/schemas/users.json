@@ -1,0 +1,32 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": ["string", "null"]
+    },
+    "username": {
+      "type": ["string", "null"]
+    },
+    "email": {
+      "type": ["string", "null"]
+    },
+    "createdAt": {
+      "type": ["integer", "null"]
+    },
+    "deactivatedAt": {
+      "type": ["integer", "null"]
+    },
+    "accessRole": {
+      "type": ["string", "null"]
+    },
+    "photo": {
+      "type": ["string", "null"]
+    },
+    "externalDirectoryId": {
+      "type": ["string", "null"]
+    }
+  }
+}

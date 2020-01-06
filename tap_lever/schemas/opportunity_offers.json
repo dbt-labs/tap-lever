@@ -1,0 +1,66 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "createdAt": {
+      "type": ["integer", "null"]
+    },
+    "creator": {
+      "type": ["string", "null"]
+    },
+    "status": {
+      "type": ["string", "null"]
+    },
+    "fields": {
+      "type": ["null", "array"],
+      "items": {
+        "type": ["object", "null"],
+        "properties": {
+          "text": {
+            "type": ["string", "null"]
+          },
+          "identifier": {
+            "type": ["string", "null"]
+          },
+          "value": {
+            "type": ["string", "null"]
+          }
+        }
+      }
+    },
+    "signatures": {
+      "type": ["object", "null"],
+      "properties": {
+        "role": {
+          "type": ["string", "null"]
+        },
+        "name": {
+          "type": ["string", "null"]
+        },
+        "email": {
+          "type": ["string", "null"]
+        },
+        "firstOpenedAt": {
+          "type": ["integer", "null"]
+        },
+        "lastOpenedAt": {
+          "type": ["integer", "null"]
+        },
+        "signedAt": {
+          "type": ["integer", "null"]
+        },
+        "signed": {
+          "type": ["boolean", "null"]
+        }
+      }
+    },
+    "approvedAt": {
+      "type": ["integer", "null"]
+    },
+    "sentAt": {
+      "type": ["integer", "null"]
+    }
+  }
+}
