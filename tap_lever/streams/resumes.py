@@ -22,14 +22,13 @@ class CandidateResumesStream(BaseStream):
         candidates = stream_cache.get("candidates")
         LOGGER.info("Found {} candidates in cache".format(len(candidates)))
 
-        params = self.get_params(_next=None)
         for i, candidate in enumerate(candidates):
             LOGGER.info(
                 "Fetching resumes for candidate {} of {}".format(i + 1, len(candidates))
             )
             candidate_id = candidate["id"]
             url = self.get_url(candidate_id)
-            resources = self.sync_paginated(url, params)
+            resources = self.sync_paginated(url)
 
 
 class OpportunityResumesStream(BaseStream):
@@ -48,7 +47,6 @@ class OpportunityResumesStream(BaseStream):
         opportunities = stream_cache.get("opportunities")
         LOGGER.info("Found {} opportunities in cache".format(len(opportunities)))
 
-        params = self.get_params(_next=None)
         for i, opportunity in enumerate(opportunities):
             LOGGER.info(
                 "Fetching resumes for opportunity {} of {}".format(
@@ -57,4 +55,4 @@ class OpportunityResumesStream(BaseStream):
             )
             opportunity_id = opportunity["id"]
             url = self.get_url(opportunity_id)
-            resources = self.sync_paginated(url, params)
+            resources = self.sync_paginated(url)

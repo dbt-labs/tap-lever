@@ -48,7 +48,7 @@ class BaseStream(base):
         save_state(self.state)
         return self.state
 
-    def sync_paginated(self, url, params):
+    def sync_paginated(self, url, params=None):
         table = self.TABLE
         _next = True
         page = 1
