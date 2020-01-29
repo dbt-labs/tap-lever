@@ -28,8 +28,15 @@ class CandidateResumesStream(BaseStream):
             )
             candidate_id = candidate["id"]
             url = self.get_url(candidate_id)
-            resources = self.sync_paginated(url)
-
+            try:
+                resources = self.sync_paginated(url)
+            except RuntimeError as e:
+                # There's a bug in the Lever API where a missing resume will result
+                # in a ResourceNotFound error instead of returning an empty response
+                if "ResourceNotFound" in str(e):
+                    LOGGER.info("Candidate %s does not have resumes", candidate_id)
+                else:
+                    raise
 
 class OpportunityResumesStream(BaseStream):
     API_METHOD = "GET"
@@ -55,4 +62,12 @@ class OpportunityResumesStream(BaseStream):
             )
             opportunity_id = opportunity["id"]
             url = self.get_url(opportunity_id)
-            resources = self.sync_paginated(url)
+            try:
+                resources = self.sync_paginated(url)
+            except RuntimeError as e:
+                # There's a bug in the Lever API where a missing resume will result
+                # in a ResourceNotFound error instead of returning an empty response
+                if "ResourceNotFound" in str(e):
+                    LOGGER.info("Opportunity %s does not have resumes", opportunity_id)
+                else:
+                    raise
