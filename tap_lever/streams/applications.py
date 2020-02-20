@@ -47,19 +47,7 @@ class OpportunityApplicationsStream(BaseStream):
         _path = self.path.format(opportunity_id=opportunity)
         return "https://api.lever.co/v1{}".format(_path)
 
-    def sync_data(self):
-        table = self.TABLE
-
-        opportunities = stream_cache.get("opportunities")
-        LOGGER.info("Found {} opportunities in cache".format(len(opportunities)))
-
+    def sync_data(self, opportunity_id):
         params = self.get_params(_next=None)
-        for i, opportunity in enumerate(opportunities):
-            LOGGER.info(
-                "Fetching referrals for opportunity {} of {}".format(
-                    i + 1, len(opportunities)
-                )
-            )
-            opportunity_id = opportunity["id"]
-            url = self.get_url(opportunity_id)
-            resources = self.sync_paginated(url, params)
+        url = self.get_url(opportunity_id)
+        resources = self.sync_paginated(url, params)

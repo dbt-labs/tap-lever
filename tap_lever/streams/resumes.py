@@ -50,24 +50,14 @@ class OpportunityResumesStream(BaseStream):
         _path = self.path.format(opportunity_id=opportunity)
         return "https://api.lever.co/v1{}".format(_path)
 
-    def sync_data(self):
-        opportunities = stream_cache.get("opportunities")
-        LOGGER.info("Found {} opportunities in cache".format(len(opportunities)))
-
-        for i, opportunity in enumerate(opportunities):
-            LOGGER.info(
-                "Fetching resumes for opportunity {} of {}".format(
-                    i + 1, len(opportunities)
-                )
-            )
-            opportunity_id = opportunity["id"]
-            url = self.get_url(opportunity_id)
-            try:
-                resources = self.sync_paginated(url)
-            except RuntimeError as e:
-                # There's a bug in the Lever API where a missing resume will result
-                # in a ResourceNotFound error instead of returning an empty response
-                if "ResourceNotFound" in str(e):
-                    LOGGER.info("Opportunity %s does not have resumes", opportunity_id)
-                else:
-                    raise
+    def sync_data(self, opportunity_id):
+        url = self.get_url(opportunity_id)
+        try:
+            resources = self.sync_paginated(url)
+        except RuntimeError as e:
+            # There's a bug in the Lever API where a missing resume will result
+            # in a ResourceNotFound error instead of returning an empty response
+            if "ResourceNotFound" in str(e):
+                LOGGER.info("Opportunity %s does not have resumes", opportunity_id)
+            else:
+                raise
