@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.2.1
+ * Write schema messages when swapping to a new stream [#18](https://github.com/singer-io/tap-lever/pull/18)
+
 ## 0.2.0
  * Move Opportunity's substreams into the sync for Opportunity [#16](https://github.com/singer-io/tap-lever/pull/16)
 
