@@ -63,21 +63,26 @@ class OpportunityStream(TimeRangeStream):
                 opportunity_id = opportunity['id']
 
                 if child_streams.get('opportunity_applications'):
+                    applications_stream.write_schema()
                     applications_stream.sync_data(opportunity_id)
 
                 if child_streams.get('opportunity_offers'):
+                    offers_stream.write_schema()
                     offers_stream.sync_data(opportunity_id)
 
                 if child_streams.get('opportunity_referrals'):
+                    referrals_stream.write_schema()
                     referrals_stream.sync_data(opportunity_id)
 
                 if child_streams.get('opportunity_resumes'):
+                    resumes_stream.write_schema()
                     resumes_stream.sync_data(opportunity_id)
 
             LOGGER.info('Finished Opportunity child stream syncs')
 
 
             with singer.metrics.record_counter(endpoint=table) as counter:
+                self.write_schema()
                 singer.write_records(table, data)
                 counter.increment(len(data))
 
