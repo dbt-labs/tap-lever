@@ -18,7 +18,7 @@ class LeverRunner(tap_framework.Runner):
         opportunity_child_catalogs = {}
 
         if not self.catalog:
-            return streams
+            return streams, opportunity_child_catalogs
         for stream_catalog in self.catalog.streams:
             if not is_selected(stream_catalog):
                 LOGGER.info("'{}' is not marked selected, skipping."
@@ -52,7 +52,8 @@ class LeverRunner(tap_framework.Runner):
 
         streams, opportunity_child_catalogs = self.get_streams_to_replicate()
 
-        LOGGER.info('Will sync: %s', ', '.join([stream.TABLE for stream in streams]))
+        if any(streams):
+            LOGGER.info('Will sync: %s', ', '.join([stream.TABLE for stream in streams]))
 
         for stream in streams:
             stream.state = self.state
