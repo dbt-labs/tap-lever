@@ -1,4 +1,5 @@
 import singer
+from tap_lever.client import OffsetInvalidException
 from tap_lever.streams import cache as stream_cache
 from tap_lever.streams.base import TimeRangeStream
 from tap_lever.state import incorporate, save_state, \
@@ -33,29 +34,42 @@ class OpportunityStream(TimeRangeStream):
 
     def sync_paginated(self, url, params=None, child_streams=None):
         table = self.TABLE
-        _next = True
-        page = 1
 
         transformer = singer.Transformer()
         applications_stream = OpportunityApplicationsStream(self.config,
                                                             self.state,
-                                                            child_streams['opportunity_applications'],
+                                                            child_streams.get('opportunity_applications'),
                                                             self.client)
         offers_stream = OpportunityOffersStream(self.config,
                                                 self.state,
-                                                child_streams['opportunity_offers'],
+                                                child_streams.get('opportunity_offers'),
                                                 self.client)
         referrals_stream = OpportunityReferralsStream(self.config,
                                                       self.state,
-                                                      child_streams['opportunity_referrals'],
+                                                      child_streams.get('opportunity_referrals'),
                                                       self.client)
         resumes_stream = OpportunityResumesStream(self.config,
                                                   self.state,
-                                                  child_streams['opportunity_resumes'],
+                                                  child_streams.get('opportunity_resumes'),
                                                   self.client)
-        while _next is not None:
-            result = self.client.make_request(url, self.API_METHOD, params=params)
+        # Set up looping parameters (page is for logging consistency)
+        finished_paginating = False
+        page = singer.bookmarks.get_bookmark(self.state, table, "next_page") or 1
+        _next = singer.bookmarks.get_bookmark(self.state, table, "offset")
+        if _next:
+            params['offset'] = _next
+
+        while not finished_paginating:
+            try:
+                result = self.client.make_request(url, self.API_METHOD, params=params)
+            except OffsetInvalidException as ex:
+                LOGGER.warning('Found invalid offset "%s", retrying without offset.', params['offset'])
+                params.pop("offset")
+                _next = None
+                page = 1
+                result = self.client.make_request(url, self.API_METHOD, params=params)
             _next = result.get('next')
+
             data = self.get_stream_data(result['data'], transformer)
 
             LOGGER.info('Starting Opportunity child stream syncs')
@@ -86,11 +100,20 @@ class OpportunityStream(TimeRangeStream):
                 singer.write_records(table, data)
                 counter.increment(len(data))
 
-            if _next:
-                params['offset'] = _next
-
             LOGGER.info('Synced page {} for {}'.format(page, self.TABLE))
             page += 1
+
+            if _next:
+                params['offset'] = _next
+                self.state = singer.bookmarks.write_bookmark(self.state, table, "offset", _next)
+                self.state = singer.bookmarks.write_bookmark(self.state, table, "next_page", page)
+                save_state(self.state)
+            else:
+                finished_paginating = True
+        self.state = singer.bookmarks.clear_bookmark(self.state, table, "offset")
+        self.state = singer.bookmarks.clear_bookmark(self.state, table, "next_page")
+        save_state(self.state)
+
 
     def sync_data_for_period(self, date, interval, child_streams=None):
         table = self.TABLE
