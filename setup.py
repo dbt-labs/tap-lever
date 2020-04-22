@@ -8,7 +8,7 @@ setup(name='tap-lever',
       author='Fishtown Analytics',
       url='http://fishtownanalytics.com',
       classifiers=['Programming Language :: Python :: 3 :: Only'],
-      py_modules=['tap_liveperson'],
+      py_modules=['tap_lever'],
       install_requires=[
           'tap-framework==0.0.5',
       ],
