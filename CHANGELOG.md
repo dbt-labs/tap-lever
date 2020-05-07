@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.1
+ * Add opportunityId (injected by the tap), approved, posting, sentDocument, signedDocument, signatures.candidate
+ to opportunity_offers schema [#23](https://github.com/singer-io/tap-lever/pull/23)
+
 ## 0.3.0
  * Bookmark on page offset for opportunity sync [#20](https://github.com/singer-io/tap-lever/pull/20)
  * Fix error during sync if no catalog passed in
