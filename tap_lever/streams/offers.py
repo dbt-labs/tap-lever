@@ -43,7 +43,40 @@ class OpportunityOffersStream(BaseStream):
         _path = self.path.format(opportunity_id=opportunity)
         return "https://api.lever.co/v1{}".format(_path)
 
+    # NB: We chose to change this function to NOT call base's
+    # sync_paginated since there was a request to add the parent id
+    # (opportunityId) to the records, and there was no natural place to do
+    # this
     def sync_data(self, opportunity_id):
         params = self.get_params(_next=None)
         url = self.get_url(opportunity_id)
         resources = self.sync_paginated(url, params)
+
+        transformer = singer.Transformer()
+        with singer.metrics.record_counter(endpoint=self.TABLE) as counter:
+            for page in self.paginate(url, params, opportunity_id):
+                self.add_parent_id(page, opportunity_id)
+                transformed_data = self.get_stream_data(page, transformer)
+                singer.write_records(self.TABLE, transformed_data)
+                counter.increment(len(page))
+        transformer.log_warning()
+
+    def paginate(self, url, params, opportunity_id):
+        _next = True
+        page = 1
+
+        while _next is not None:
+            result = self.client.make_request(url, self.API_METHOD, params=params)
+            _next = result.get('next')
+
+            yield result['data']
+
+            if _next:
+                params['offset'] = _next
+            LOGGER.info('Synced page {} for {}'.format(page, self.TABLE))
+            page += 1
+
+
+    def add_parent_id(self, data, opportunity_id):
+        for rec in data:
+            rec['opportunityId'] = opportunity_id

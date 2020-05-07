@@ -4,6 +4,9 @@
     "id": {
       "type": "string"
     },
+    "opportunityId": {
+      "type": ["string", "null"]
+    },
     "createdAt": {
       "type": ["integer", "null"]
     },
@@ -53,6 +56,32 @@
         },
         "signed": {
           "type": ["boolean", "null"]
+        },
+        "candidate": {
+          "type": ["object", "null"],
+          "properties": {
+            "email": {
+              "type": ["string", "null"]
+            },
+            "lastOpenedAt": {
+              "type": ["integer", "null"]
+            },
+            "role": {
+              "type": ["string", "null"]
+            },
+            "signedAt": {
+              "type": ["integer", "null"]
+            },
+            "firstOpenedAt": {
+              "type": ["integer", "null"]
+            },
+            "signed": {
+              "type": ["boolean", "null"]
+            },
+            "name": {
+              "type": ["string", "null"]
+            }
+          }
         }
       }
     },
@@ -61,6 +90,40 @@
     },
     "sentAt": {
       "type": ["integer", "null"]
+    },
+    "approved": {
+      "type": ["boolean", "null"]
+    },
+    "posting": {
+      "type": ["string", "null"]
+    },
+    "sentDocument": {
+      "type": ["object", "null"],
+      "properties": {
+        "uploadedAt": {
+          "type": ["integer", "null"]
+        },
+        "downloadUrl": {
+          "type": ["string", "null"]
+        },
+        "fileName": {
+          "type": ["string", "null"]
+        }
+      }
+    },
+    "signedDocument": {
+      "type": ["object", "null"],
+      "properties": {
+        "uploadedAt": {
+          "type": ["integer", "null"]
+        },
+        "downloadUrl": {
+          "type": ["string", "null"]
+        },
+        "fileName": {
+          "type": ["string", "null"]
+        }
+      }
     }
   }
 }
