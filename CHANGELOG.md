@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.4.0
+ * Write all datetime fields as iso8601 date-times instead of epoch milliseconds [#25](https://github.com/singer-io/tap-lever/pull/25)
+
 ## 0.3.1
  * Add opportunityId (injected by the tap), approved, posting, sentDocument, signedDocument, signatures.candidate
  to opportunity_offers schema [#23](https://github.com/singer-io/tap-lever/pull/23)
