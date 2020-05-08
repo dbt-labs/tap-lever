@@ -5,7 +5,8 @@
       "type": "string"
     },
     "createdAt": {
-      "type": ["integer", "null"]
+      "type": ["string", "null"],
+      "format": "date-time"
     },
     "creator": {
       "type": ["string", "null"]
@@ -43,13 +44,16 @@
           "type": ["string", "null"]
         },
         "firstOpenedAt": {
-          "type": ["integer", "null"]
+          "type": ["string", "null"],
+          "format": "date-time"
         },
         "lastOpenedAt": {
-          "type": ["integer", "null"]
+          "type": ["string", "null"],
+          "format": "date-time"
         },
         "signedAt": {
-          "type": ["integer", "null"]
+          "type": ["string", "null"],
+          "format": "date-time"
         },
         "signed": {
           "type": ["boolean", "null"]
@@ -57,10 +61,12 @@
       }
     },
     "approvedAt": {
-      "type": ["integer", "null"]
+      "type": ["string", "null"],
+      "format": "date-time"
     },
     "sentAt": {
-      "type": ["integer", "null"]
+      "type": ["string", "null"],
+      "format": "date-time"
     }
   }
 }

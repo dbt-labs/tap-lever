@@ -53,7 +53,8 @@
       "type": ["null", "object"],
       "properties": {
         "archivedAt": {
-          "type": ["integer", "null"]
+          "type": ["string", "null"],
+          "format": "date-time"
         },
         "reason": {
           "type": ["string", "null"]
@@ -95,16 +96,20 @@
       "properties": {}
     },
     "createdAt": {
-      "type": ["integer", "null"]
+      "type": ["string", "null"],
+      "format": "date-time"
     },
     "lastInteractionAt": {
-      "type": ["integer", "null"]
+      "type": ["string", "null"],
+      "format": "date-time"
     },
     "lastAdvancedAt": {
-      "type": ["integer", "null"]
+      "type": ["string", "null"],
+      "format": "date-time"
     },
     "snoozedUntil": {
-      "type": ["integer", "null"]
+      "type": ["string", "null"],
+      "format": "date-time"
     },
     "urls": {
       "type": ["null", "object"],

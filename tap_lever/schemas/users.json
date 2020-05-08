@@ -14,10 +14,12 @@
       "type": ["string", "null"]
     },
     "createdAt": {
-      "type": ["integer", "null"]
+      "type": ["string", "null"],
+      "format": "date-time"
     },
     "deactivatedAt": {
-      "type": ["integer", "null"]
+      "type": ["string", "null"],
+      "format": "date-time"
     },
     "accessRole": {
       "type": ["string", "null"]

@@ -8,7 +8,8 @@
       "type": ["string", "null"]
     },
     "createdAt": {
-      "type": ["integer", "null"]
+      "type": ["string", "null"],
+      "format": "date-time"
     },
     "creator": {
       "type": ["string", "null"]
@@ -46,13 +47,16 @@
           "type": ["string", "null"]
         },
         "firstOpenedAt": {
-          "type": ["integer", "null"]
+          "type": ["string", "null"],
+          "format": "date-time"
         },
         "lastOpenedAt": {
-          "type": ["integer", "null"]
+          "type": ["string", "null"],
+          "format": "date-time"
         },
         "signedAt": {
-          "type": ["integer", "null"]
+          "type": ["string", "null"],
+          "format": "date-time"
         },
         "signed": {
           "type": ["boolean", "null"]
@@ -64,16 +68,19 @@
               "type": ["string", "null"]
             },
             "lastOpenedAt": {
-              "type": ["integer", "null"]
+              "type": ["string", "null"],
+              "format": "date-time"
             },
             "role": {
               "type": ["string", "null"]
             },
             "signedAt": {
-              "type": ["integer", "null"]
+              "type": ["string", "null"],
+              "format": "date-time"
             },
             "firstOpenedAt": {
-              "type": ["integer", "null"]
+              "type": ["string", "null"],
+              "format": "date-time"
             },
             "signed": {
               "type": ["boolean", "null"]
@@ -86,10 +93,12 @@
       }
     },
     "approvedAt": {
-      "type": ["integer", "null"]
+      "type": ["string", "null"],
+      "format": "date-time"
     },
     "sentAt": {
-      "type": ["integer", "null"]
+      "type": ["string", "null"],
+      "format": "date-time"
     },
     "approved": {
       "type": ["boolean", "null"]
@@ -101,7 +110,8 @@
       "type": ["object", "null"],
       "properties": {
         "uploadedAt": {
-          "type": ["integer", "null"]
+          "type": ["string", "null"],
+          "format": "date-time"
         },
         "downloadUrl": {
           "type": ["string", "null"]
@@ -115,7 +125,8 @@
       "type": ["object", "null"],
       "properties": {
         "uploadedAt": {
-          "type": ["integer", "null"]
+          "type": ["string", "null"],
+          "format": "date-time"
         },
         "downloadUrl": {
           "type": ["string", "null"]

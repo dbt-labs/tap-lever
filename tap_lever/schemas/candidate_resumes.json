@@ -5,7 +5,8 @@
       "type": "string"
     },
     "createdAt": {
-      "type": ["integer", "null"]
+      "type": ["string", "null"],
+      "format": "date-time"
     },
     "file": {
       "type": ["object", "null"],

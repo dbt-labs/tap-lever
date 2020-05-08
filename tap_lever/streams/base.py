@@ -54,7 +54,7 @@ class BaseStream(base):
         page = 1
 
         all_resources = []
-        transformer = singer.Transformer()
+        transformer = singer.Transformer(singer.UNIX_MILLISECONDS_INTEGER_DATETIME_PARSING)
         while _next is not None:
             result = self.client.make_request(url, self.API_METHOD, params=params)
             _next = result.get('next')
@@ -72,6 +72,7 @@ class BaseStream(base):
 
             LOGGER.info('Synced page {} for {}'.format(page, self.TABLE))
             page += 1
+        transformer.log_warning()
         return all_resources
 
     def get_stream_data(self, result, transformer):

@@ -35,7 +35,7 @@ class OpportunityStream(TimeRangeStream):
     def sync_paginated(self, url, params=None, child_streams=None):
         table = self.TABLE
 
-        transformer = singer.Transformer()
+        transformer = singer.Transformer(singer.UNIX_MILLISECONDS_INTEGER_DATETIME_PARSING)
         applications_stream = OpportunityApplicationsStream(self.config,
                                                             self.state,
                                                             child_streams.get('opportunity_applications'),
@@ -110,6 +110,8 @@ class OpportunityStream(TimeRangeStream):
                 save_state(self.state)
             else:
                 finished_paginating = True
+
+        transformer.log_warning()
         self.state = singer.bookmarks.clear_bookmark(self.state, table, "offset")
         self.state = singer.bookmarks.clear_bookmark(self.state, table, "next_page")
         save_state(self.state)
