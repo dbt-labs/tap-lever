@@ -32,7 +32,7 @@ class OpportunityStream(TimeRangeStream):
 
         return self.sync_data(child_streams)
 
-    def sync_paginated(self, url, params=None, child_streams=None):
+    def sync_paginated(self, url, params=None, updated_after=None, child_streams=None):
         table = self.TABLE
 
         transformer = singer.Transformer(singer.UNIX_MILLISECONDS_INTEGER_DATETIME_PARSING)
@@ -107,6 +107,8 @@ class OpportunityStream(TimeRangeStream):
                 params['offset'] = _next
                 self.state = singer.bookmarks.write_bookmark(self.state, table, "offset", _next)
                 self.state = singer.bookmarks.write_bookmark(self.state, table, "next_page", page)
+                # Save the last_record bookmark when we're paginating to make sure we pick up there if interrupted
+                self.state = singer.bookmarks.write_bookmark(self.state, table, "last_record", updated_after.isoformat())
                 save_state(self.state)
             else:
                 finished_paginating = True
@@ -130,7 +132,7 @@ class OpportunityStream(TimeRangeStream):
 
         params = self.get_params(updated_after, updated_before)
         url = self.get_url()
-        self.sync_paginated(url, params, child_streams)
+        self.sync_paginated(url, params, updated_after, child_streams)
 
         self.state = incorporate(self.state,
                                  table,

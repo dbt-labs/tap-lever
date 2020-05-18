@@ -50,7 +50,6 @@ class OpportunityOffersStream(BaseStream):
     def sync_data(self, opportunity_id):
         params = self.get_params(_next=None)
         url = self.get_url(opportunity_id)
-        resources = self.sync_paginated(url, params)
 
         transformer = singer.Transformer(singer.UNIX_MILLISECONDS_INTEGER_DATETIME_PARSING)
         with singer.metrics.record_counter(endpoint=self.TABLE) as counter:
