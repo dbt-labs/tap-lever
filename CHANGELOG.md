@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.4.1
+ * Fix opportunities bookmarking [#27](https://github.com/singer-io/tap-lever/pull/27)
+
 ## 0.4.0
  * Write all datetime fields as iso8601 date-times instead of epoch milliseconds [#25](https://github.com/singer-io/tap-lever/pull/25)
 
